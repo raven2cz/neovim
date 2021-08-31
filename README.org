@@ -32,7 +32,7 @@
   - Start with :help nvim-from-vim if you already use Vim.
 
 * Nvim Configuration
-The configuration is strongly depended on [[https://www.youtube.com/watch?v=C5d3zOkRrvA][Ben Frain Youtuber] - Neovim 0.5 – Lua, built in LSP, Treesitter and the best plugins for 2021.
+The configuration is strongly depended on [[https://www.youtube.com/watch?v=C5d3zOkRrvA][Ben Frain Youtuber]] - Neovim 0.5 – Lua, built in LSP, Treesitter and the best plugins for 2021.
 
 The configuration is very very raw. There is necessary several modifications. There are a lot of bugs with memory etc. It needs time...
 
