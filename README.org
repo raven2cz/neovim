@@ -6,8 +6,14 @@
 #+html: <p align="center"><b>hyperextensible Vim-based text editor</b></p>
 #+html: <p align="center"><img src="images/nvim-everforest.png" /></p>
 #+html: <p align="center"><b>Nvim Everforest Theme</b></p>
-#+html: <p align="center"><img src="images/nvim-doom-one.png" /></p>
-#+html: <p align="center"><b>Nvim Doom One Theme</b></p>
+#+html: <p align="center"><img src="images/nvim-darkplus.png" /></p>
+#+html: <p align="center"><b>Nvim DarkPlus Theme</b></p>
+#+html: <p align="center"><img src="images/nvim-dracula.png" /></p>
+#+html: <p align="center"><b>Nvim Dracula Theme</b></p>
+#+html: <p align="center"><img src="images/nvim-gruvbox.png" /></p>
+#+html: <p align="center"><b>Nvim Gruvbox Medium Theme</b></p>
+#+html: <p align="center"><img src="images/nvim-palenight.png" /></p>
+#+html: <p align="center"><b>Nvim Material Palenight Theme</b></p>
 
 * Table of Contents :toc:
 - [[#introduction][Introduction]]
