@@ -8,7 +8,7 @@
 
 * Table of Contents :toc:
 - [[#introduction][Introduction]]
-- [[#quick-start][Quick Start]]
+- [[#quick_start][Quick Start]]
 - [[#license][License]]
 
 * Introduction
@@ -49,28 +49,22 @@
 - *clipboard*          — System clipboard sync (~unnamedplus~).  
 
 *Quick Start*
-* *Prerequisites*: Neovim ≥ 0.10 with Lua support. NPM for LSP server sync.
-* *Clone* this repo:  
-
+1. *Prerequisites*: Neovim ≥ 0.10 with Lua support. NPM for LSP server sync.
+2. *Clone* this repo:  
 #+begin_src bash
 git clone [https://github.com/raven2cz/nvim](https://github.com/raven2cz/nvim) \~/.config/nvim
 #+end_src
-
-* *Launch* Neovim:  
-
+3. *Launch* Neovim:  
 #+begin_src bash
 nvim
 #+end_src
-
-* *Install* plugins & servers:  
-
+4. *Install* plugins & servers:  
 #+begin_src vim
 :Lazy sync
 :MasonInstall lua_ls cssls html pyright jsonls yamlls bashls
 :Lazy lock
 #+end_src
+5. *Enjoy* a fast, extensible, and fully documented editor setup!
 
-* *Enjoy* a fast, extensible, and fully documented editor setup!
-
-* *License*
+* License
   This configuration is released under the *MIT License*. See the included ~LICENSE~ file for full terms.
