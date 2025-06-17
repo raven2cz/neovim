@@ -1,9 +1,10 @@
-#+TITLE: Raven2cz’s Neovim Configuration (2025 Edition)
+#+TITLE: Raven2cz Neovim Configuration (2025 Edition)
 #+AUTHOR: Antonin Fischer (raven2cz)
-#+DESCRIPTION: A modular, lazy-loaded Lua-based Neovim setup with LSP, Treesitter, dashboard and sidebar.
+#+DESCRIPTION: A modular Lua-based Neovim setup with lazy loading, LSP integration, Treesitter, custom dashboard, and sidebar.
 
-#+html: <p align="center"><img src="images/alpha-dashboard.png" /></p>
-#+html: <p align="center"><b>Custom Alpha Dashboard</b></p>
+#+html: <p align="center"><img src="images/nvim-logo.png" /></p>
+#+html: <p align="center"><b>hyperextensible Vim-based text editor</b></p>
+#+html: <p align="center"><img src="images/nvim-tokyonight.png" /></p>
 
 * Table of Contents :toc:
 - [[#introduction][Introduction]]
@@ -11,70 +12,65 @@
 - [[#license][License]]
 
 * Introduction
-This configuration turns Neovim into a modern, extensible IDE-like editor while preserving Vim’s modal editing model.
++ *Modular & Lazy*  — Built on [[https://github.com/folke/lazy.nvim][lazy.nvim]], it loads plugins on demand, maintains a lockfile (~lazy-lock.json~), and supports version constraints for rock-solid stability.
++ *Powered by LSP*   — Automatic installation and configuration of language servers, linters and formatters via [[https://github.com/mason-org/mason.nvim][mason.nvim]] and [[https://github.com/mason-org/mason-lspconfig.nvim][mason-lspconfig]].
++ *Syntax & UI*      — High-performance syntax highlighting and indenting through Treesitter; dynamic statusline, interactive dashboard, and a sidebar file browser.
++ *Drop-in Vim*      — Fully compatible with Vim’s editing model and existing plugins; extends your workflow without surprises.
 
-** Modular & Lazy
-- Built on [[https://github.com/folke/lazy.nvim][lazy.nvim]] for on-demand plugin loading, lockfile support (`lazy-lock.json`), and version pinning.
-- Keeps startup time minimal by only loading plugins when needed.
+*Core Architecture*
+- ~init.lua~  
+  • Bootstraps *lazy.nvim* and loads the core modules.  
+- ~lua/core/options.lua~  
+  • Editor settings (encoding, clipboard, line numbers, indent, search, performance).  
+- ~lua/core/keymaps.lua~  
+  • Leader-based shortcuts for saving, quitting, fuzzy-finding, file browser, toggling relative numbers.  
+- ~lua/core/autocmds.lua~  
+  • Handy autocommands (e.g. highlight yank).  
+- ~lua/core/lazy.lua~  
+  • Plugin specification with inline comments explaining purpose and load conditions.  
+- ~lua/lsp/init.lua~  
+  • LSP setup: automatic server install, shared capabilities, and buffer-local keymaps (~gd~, ~gD~, ~K~, etc.).
 
-** LSP & Autocompletion
-- Automatic installation and management of language servers, linters and formatters via [[https://github.com/mason-org/mason.nvim][mason.nvim]] and [[https://github.com/mason-org/mason-lspconfig.nvim][mason-lspconfig]].
-- Context-aware completion powered by `nvim-cmp` and `LuaSnip` snippets.
+*Key Plugins & Features*
+- *lazy.nvim*          — Modern plugin manager with lazy loading, lockfile support, and version pinning.  
+- *alpha-nvim*         — Startup dashboard showing ASCII art, quick-action buttons, and Neovim version.  
+- *oil.nvim*           — Sidebar file explorer; open it with ~<leader>e~.  
+- *nvim-lspconfig*     — Preconfigured integration for 50+ language servers.  
+- *mason.nvim*         — CLI-style installer for LSP servers, DAPs, linters, and formatters.  
+- *mason-lspconfig.nvim* — Bridges Mason and nvim-lspconfig; auto-registers servers.  
+- *nvim-cmp & LuaSnip* — Context-aware completion with snippet support.  
+- *nvim-treesitter*    — Incremental parsing for robust syntax highlighting and indentation.  
+- *telescope.nvim*     — Fuzzy finder with extensions (live grep, buffers, help tags, FZF native).  
+- *lualine.nvim*       — Fast, configurable statusline with Git and diagnostic sections.  
+- *gitsigns.nvim*      — Git diff markers and hunk actions in the sign column.  
+- *windwp/nvim-autopairs* — Auto-close brackets and quotes; integrates with completion.  
+- *numToStr/Comment.nvim* — Smart commenting mappings (~gc~, ~gcc~).  
+- *folke/which-key.nvim* — Popup keybinding hints for easier discovery.  
+- *clipboard*          — System clipboard sync (~unnamedplus~).  
 
-** Syntax & UI Enhancements
-- High-performance syntax highlighting and indenting courtesy of `nvim-treesitter`.
-- Interactive startup dashboard (`alpha-nvim`) with ASCII art, quick-action buttons, and Neovim version display.
-- Sidebar file explorer (`oil.nvim`) with `<leader>e` to keep your file tree always visible.
+*Quick Start*
+1. *Prerequisites*: Neovim ≥ 0.10 with Lua support. NPM for LSP server sync.
+2. *Clone* this repo:  
 
-* Nvim Configuration
-This setup is inspired by [[https://github.com/LunarVim/Neovim-from-scratch][Neovim-from-scratch]] by Christian Chiarulli but stands on its own, organized for clarity and long-term maintainability.
-
-** Project Layout
-- `init.lua`  
-  • Bootstraps **lazy.nvim** and loads the core modules: `options`, `keymaps`, `autocmds`, and `lazy`.  
-- `lua/core/options.lua`  
-  • Editor, UI, search, and performance settings (encoding, clipboard sync, line numbers, indent, search behavior, update timeouts).  
-- `lua/core/keymaps.lua`  
-  • Global leader-key mappings: save/quit, Telescope finders, Oil sidebar, toggle relative numbers.  
-- `lua/core/autocmds.lua`  
-  • Handy autocommands (e.g. yank highlighting).  
-- `lua/core/lazy.lua`  
-  • Plugin list with descriptive comments, load triggers, and inline configuration.  
-- `lua/lsp/init.lua`  
-  • LSP integration: server installation, shared capabilities, `on_attach` mappings (`gd`, `gD`, `K`, `<leader>rn`, etc.).
-
-** Key Plugins
-- **lazy.nvim**  
-- **alpha-nvim** (dashboard)  
-- **oil.nvim** (sidebar explorer)  
-- **mason.nvim** + **mason-lspconfig.nvim** + **nvim-lspconfig**  
-- **nvim-cmp** + **LuaSnip**  
-- **nvim-treesitter**  
-- **telescope.nvim** (+ fzf-native)  
-- **lualine.nvim**, **gitsigns.nvim**, **nvim-autopairs**, **Comment.nvim**, **which-key.nvim**
-
-** Quick Start
-1. Clone into `~/.config/nvim`:  
-```
-
+#+begin_src bash
 git clone [https://github.com/raven2cz/nvim](https://github.com/raven2cz/nvim) \~/.config/nvim
+#+end_src
 
-```
-2. Launch Neovim ≥ 0.10:  
-```
+3. *Launch* Neovim:  
 
+#+begin_src bash
 nvim
+#+end_src
 
-```
-3. Install plugins & servers:  
-```
+4. *Install* plugins & servers:  
 
-\:Lazy sync
-\:MasonInstall lua\_ls cssls html pyright jsonls yamlls bashls
-\:Lazy lock
+#+begin_src vim
+:Lazy sync
+:MasonInstall lua_ls cssls html pyright jsonls yamlls bashls
+:Lazy lock
+#+end_src
 
-```
-4. Enjoy a fast, feature-rich Neovim experience!
+5. *Enjoy* a fast, extensible, and fully documented editor setup!
 
 * License
-This configuration is released under the **MIT License**. See the included `LICENSE` file for details.
+  This configuration is released under the *MIT License*. See the included ~LICENSE~ file for full terms.
