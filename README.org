@@ -2,9 +2,9 @@
 #+AUTHOR: Antonin Fischer (raven2cz)
 #+DESCRIPTION: A modular Lua-based Neovim setup with lazy loading, LSP integration, Treesitter, custom dashboard, and sidebar.
 
--#+html: <p align="center"><img src="images/nvim-logo.png" /></p>
--#+html: <p align="center"><b>hyperextensible Vim-based text editor</b></p>
--#+html: <p align="center"><img src="images/nvim-tokyonight.png" /></p>
+#+html: <p align="center"><img src="images/nvim-logo.png" /></p>
+#+html: <p align="center"><b>hyperextensible Vim-based text editor</b></p>
+#+html: <p align="center"><img src="images/nvim-tokyonight.png" /></p>
 
 * Table of Contents :toc:
 - [[#introduction][Introduction]]
